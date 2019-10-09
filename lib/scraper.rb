@@ -9,11 +9,23 @@ class Scraper
     
     doc = Nokogiri::HTML(html)
     
+    #students: doc.css("div.student-card")
     #name: doc.css("h4.student-name").text
     #location: doc.css("p.student-location").text
     #profile_url: doc.css(".student-card a").attribute("href").value
     
-    binding.pry
+    students = {}
+    
+    doc.css("div.student-card").each do |student|
+      name = student.css("h4.student-name").text
+      students[name.to_sym] = {
+        :location => student.css("p.student-location").text,
+        :profile_url => student.css("div.student-card a").attribute("href").value
+      }
+    end
+    #binding.pry
+    
+    students
   end
 
   def self.scrape_profile_page(profile_url)
