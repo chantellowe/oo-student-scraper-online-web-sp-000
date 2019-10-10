@@ -27,7 +27,7 @@ class Scraper
     students
   end
   
-  # twitter: 
+  # twitter: doc.css("div.social-icon-container a").attribute("href")
   # linkedin: 
   # github: 
   # blog: 
