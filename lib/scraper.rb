@@ -12,7 +12,7 @@ class Scraper
     #students: doc.css("div.student-card")
     #name: doc.css("h4.student-name").text
     #location: doc.css("p.student-location").text
-    #profile_url: doc.css(".student-card a").attribute("href").value
+    #profile_url: doc.css("a").attribute("href").value
     
     students = []
     
@@ -20,15 +20,29 @@ class Scraper
       student_info = {}
       student_info[:name] = student.css("h4.student-name").text
       student_info[:location] = student.css("p.student-location").text
-      student_info[:profile_url] = student.css("div.student-card a").attribute("href").value
+      #binding.pry
+      student_info[:profile_url] = student.css("a").attribute("href").value
       students << student_info
     end
-    #binding.pry
-    
     students
   end
+  
+  # twitter: 
+  # linkedin: 
+  # github: 
+  # blog: 
+  # profile_quote: 
+  # bio: 
 
   def self.scrape_profile_page(profile_url)
+    
+    html = open(profile_url)
+    
+    doc = Nokogiri::HTML(html)
+    
+    profile_pages = {}
+    
+    
     
   end
 
